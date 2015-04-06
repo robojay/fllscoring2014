@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html manifest="scoring2014.manifest">
+<head>
+    <title>FLL 2014 - World Class</title>
+    <!-- meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" / -->
+    <!-- meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.1" / -->
+    <meta name="viewport" content="user-scalable=no, width=850" />
+    <meta name="apple-mobile-web-app-capable" content="YES" />
+    <link rel="apple-touch-icon" href="icon.png">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="reset.css" type="text/css" media="screen, projection" />
+
+    <link rel="stylesheet" media="all" href="scoring2014_land.css">
+
+    <!-- If you're here and have IE9, remove the exceptions let me know if the HTML5/CSS3 goodies work -->
+    <!-- Thanks... jay@reactivetechnologies.com -->
+
+    <!--[if !IE]><!-->
+    <!-- link rel="stylesheet" media="all and (orientation:portrait)" href="scoring2014_port.css" -->
+    <!-- link rel="stylesheet" media="all and (orientation:landscape)" href="scoring2014_land.css" -->
+    <!-- link rel="stylesheet" media="all and (max-device-width: 480px)" href="scoring2014_narrow.css" -->
+    <!--<![endif]-->    
+    
+    <script language="javascript" type="text/javascript" src="fllScoring2014.js"></script>
+</head>
+<body onload="reset();">
+    <div id="main">
+        <div id="timerText">2:30</div>
+        <button id="startStopButton" type="button" value="start" onclick="timerToggle();">Start</button>
+        <button id="resetButton" type="reset" value="reset" onclick="reset();">Reset</button>
+        <div id="counterBlock">
+            <div id="countUp"><input id="countUpButton" type="radio" value="up" onchange="countDirectionChange('up');"/>Count Up</div>
+            <div id="countDown"><input id="countDownButton" type="radio" value="down" onclick="countDirectionChange('down');"/>Count Down</div>
+        </div>
+        <div id="scoreBlock">
+            Score: <div id="scoreText">0</div>
+        </div>
+        <div id="box1">
+            <div id="box1Label" class="BoxLabel">1</div>
+            <div id="box1Title" class="BoxTitle">Reverse Engineering</div>
+            <div id="box1Item1" class="BoxItem1">Basket in Base</div>
+            <select id="basketInBase" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+            <div id="box1Item2" class="BoxItem2">Your model is in Base, and is "identical"</div>
+            <select id="modelIdentical" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+        <div id="box2">
+            <div id="box2Label" class="BoxLabel">2</div>
+            <div id="box2Title" class="BoxTitle">Opening Doors</div>
+            <div id="box2Item1" class="BoxItem1">Door opened by pushing handle down</div>
+            <select id="openDoor" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+        <div id="box3">
+            <div id="box3Label" class="BoxLabel">3</div>
+            <div id="box3Title" class="BoxTitle">Project-Based Learning</div>
+            <div id="box3Item1" class="BoxItem1">Loops on scale</div>
+            <select id="loopsOnScale" class="ScoreBox" onchange="update();">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+        </div>
+        <div id="box4">
+            <div id="box4Label" class="BoxLabel">4</div>
+            <div id="box4Title" class="BoxTitle">Apprenticeship</div>
+            <div id="box4Item1" class="BoxItem1">Model presented to Referee</div>
+            <select id="peopleNotInBase" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+            <div id="box4Item2" class="BoxItem2">Touching circle,not in Base, people Bound</div>
+            <select id="peopleModelTouchingCircle" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+        <div id="box5">
+            <div id="box5Label" class="BoxLabel">5</div>
+            <div id="box5Title" class="BoxTitle">Search Engine</div>
+            <div id="box5Item1" class="BoxItem1">Only Slider caused wheel to spin 1+ times</div>
+            <select id="sliderSpin" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+            <div id="box5Item2" class="BoxItem2">Only correct loop removed</div>
+            <select id="onlyCorrectLoopRemoved" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+        <div id="box6">
+            <div id="box6Label" class="BoxLabel">6</div>
+            <div id="box6Title" class="BoxTitle">Sports</div>
+            <div id="box6Item1" class="BoxItem1">Ball shot from east/north of "Shot Lines" toward net</div>
+             <select id="ballShot" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+            <div id="box6Item3" class="BoxItem3">Ball touching mat in Net at end of match</div>
+             <select id="ballInNet" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+        <div id="box7">
+            <div id="box7Label" class="BoxLabel">7</div>
+            <div id="box7Title" class="BoxTitle">Robotics Competition</div>
+            <div id="box7Item1" class="BoxItem1">Only Robotics Insert Installed</div>
+            <select id="insertInstalled" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+            <div id="box7Item2" class="BoxItem2">Loop no longer touching model*</div>
+            <select id="robotLoopNotTouching" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+        <div id="box8">
+            <div id="box8Label" class="BoxLabel">8</div>
+            <div id="box8Title" class="BoxTitle">Using the Right Senses</div>
+            <div id="box8Item1" class="BoxItem1">Loop no longer touching model*</div>
+            <select id="sensingLoopRemoved" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+        <div id="box9">
+            <div id="box9Label" class="BoxLabel">9</div>
+            <div id="box9Title" class="BoxTitle">Remote Communication/Learning</div>
+            <div id="box9Item1" class="BoxItem1">Referee saw robot pull slider west</div>
+            <select id="sliderPulled" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+        <div id="box10">
+            <div id="box10Label" class="BoxLabel">10</div>
+            <div id="box10Title" class="BoxTitle">Thinking Outside the Box</div>
+            <div id="box10Item1" class="BoxItem1">Idea model not touching Box, Box never in Base</div>
+            <select id="ideaModelRemoved" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+            <div id="box10Item3" class="BoxItem3">Bulb faces UP</div>
+            <select id="bulbUp" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+        <div id="box11">
+            <div id="box11Label" class="BoxLabel">11</div>
+            <div id="box11Title" class="BoxTitle">Community Learning</div>
+            <div id="box11Item1" class="BoxItem1">Loop no longer touching model</div>
+            <select id="learningLoopRemoved" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+        <div id="box12">
+            <div id="box12Label" class="BoxLabel">12</div>
+            <div id="box12Title" class="BoxTitle">Cloud Access</div>
+            <div id="box12Item1" class="BoxItem1">SD Card is UP due to instered "key"</div>
+            <select id="sdCardUp" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+        <div id="box13">
+            <div id="box13Label" class="BoxLabel">13</div>
+            <div id="box13Title" class="BoxTitle">Engagement</div>
+            <div id="box13Item1" class="BoxItem1">Yellow section moved south</div>
+            <select id="engaged" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+            <div id="box13Item2" class="BoxItem2">Dial major Marker Color</div>
+            <select id="markerColor" class="ScoreBox" onchange="update();">
+                <option value="NA">N/A</option>
+                <option value="RED10">Red 10%</option>
+                <option value="ORANGE16">Orange 16%</option>
+                <option value="GREEN22">Green 22%</option>
+                <option value="BLUE28">Blue 28%</option>
+                <option value="RED34">Red 34%</option>
+                <option value="BLUE40">Blue 40%</option>
+                <option value="GREEN46">Green 46%</option>
+                <option value="ORANGE52">Orange 52%</option>
+                <option value="RED58">Red 58%</option>
+            </select>
+            <div id="box13Item3" class="BoxItem3">Ticks past major marker</div>
+            <select id="markerTicks" class="ScoreBox" onchange="update();">
+                <option value="NA">N/A</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div id="box14">
+            <div id="box14Label" class="BoxLabel">14</div>
+            <div id="box14Title" class="BoxTitle">Adapting to Changing Conditions</div>
+            <div id="box14Item1" class="BoxItem1">Model rotated 90-ish degrees CCW</div>
+            <select id="rotated" class="YesNoBox" onchange="update();">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+        <div id="box15">
+            <div id="box15Label" class="BoxLabel">15</div>
+            <div id="box15Title" class="BoxTitle">Penalties</div>
+            <div id="box15Item1" class="BoxItem1">Robot, Sprawl, Junk Penalties</div>
+            <select id="penalties" class="ScoreBox" onchange="update();">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+        </div>
+        <div id="version" onclick="getInfo();">V0.4</div>
+    </div>
+</body>
+</html>
